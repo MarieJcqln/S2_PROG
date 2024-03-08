@@ -17,10 +17,16 @@ return 0;
 }
 
 void bubble_sort(std::vector<int> & vec){
+    while (is_sorted(vec)==false){
     int i{0};
     while(i<size(vec)){
+        if (vec[i]>vec[i+1]){
+            std::swap(vec[i],vec[i+1]);
+        }
         i++;
     }
+    }
+    
 }
 
 void selection_sort(std::vector<int> & vec);
