@@ -93,9 +93,10 @@ void merge_sort(std::vector<int> & vec) {
     merge_sort(vec, 0, vec.size() - 1);}
 }
 
-int search(std::vector<int> vec, int const val) {
+int search(std::vector<int> vec, int const val) { 
     int left {0};
-    int right {vec.size()};
+    int size = static_cast<int>(vec.size());
+    int right {size};
     int middle {(right+left)/2};
     if (is_sorted(vec)) {
         //dichotomie
@@ -126,21 +127,35 @@ int search(std::vector<int> vec, int const val) {
 int main(){
     //std::vector<int> array {6, 2, 7, 4, 9, 1, 3, 8, 5};
 
-    std::vector<int> array {1, 2, 3, 4, 5, 6, 7, 8, 9};
-    {
-    ScopedTimer timer("blibliotheque standard");
-    std::sort(array.begin(), array.end());
-    }
-    //Rapide par rapport aux fonctions de tri codées
+    // std::vector<int> array {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    // {
+    // ScopedTimer timer("blibliotheque standard");
+    // std::sort(array.begin(), array.end());
+    // }
+    // //Rapide par rapport aux fonctions de tri codées
 
-    merge_sort(array);
-    //bubble_sort(array);
-    if (is_sorted(array)) {
-        std::cout << "Le tableau est trié" << std::endl;
-    } else {
-        std::cout << "Le tableau n'est pas trié" << std::endl;
-    }
+    // merge_sort(array);
+    // //bubble_sort(array);
+    // if (is_sorted(array)) {
+    //     std::cout << "Le tableau est trié" << std::endl;
+    // } else {
+    //     std::cout << "Le tableau n'est pas trié" << std::endl;
+    // }
+    // return 0;
+
+    std::vector<int> vec1 {1, 2, 2, 3, 4, 8, 12};
+    search(vec1,8);
+    std::vector<int> vec2 {1, 2, 3, 3, 6, 14, 12, 15};
+    search(vec2,15);
+    std::vector<int> vec3 {2, 2, 3, 4, 5, 8, 12, 15, 16};
+    search(vec3,16);
+    std::vector<int> vec4 {5, 6, 7, 8, 9, 10, 11, 12, 13};
+    search(vec4,6);
+    std::vector<int> vec5 {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    search(vec5,10);
+
     return 0;
+
 }
 
 
