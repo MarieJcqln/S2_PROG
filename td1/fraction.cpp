@@ -103,60 +103,60 @@ float to_float(fraction const& fraction1){
 
 
 
-fraction add(fraction fraction1, fraction fraction2)
-{
-    fraction result{};
-    if (fraction1.denominator == fraction2.denominator)
-    {
-        result.numerator = fraction1.numerator + fraction2.numerator;
-        result.denominator = fraction1.denominator;
-    }
-    else
-    {
-        result.numerator = fraction1.numerator*fraction2.denominator + fraction2.numerator*fraction1.denominator;
-        result.denominator = fraction1.denominator+fraction2.denominator;
-    }
-    return result;
-}
+// fraction add(fraction fraction1, fraction fraction2)
+// {
+//     fraction result{};
+//     if (fraction1.denominator == fraction2.denominator)
+//     {
+//         result.numerator = fraction1.numerator + fraction2.numerator;
+//         result.denominator = fraction1.denominator;
+//     }
+//     else
+//     {
+//         result.numerator = fraction1.numerator*fraction2.denominator + fraction2.numerator*fraction1.denominator;
+//         result.denominator = fraction1.denominator+fraction2.denominator;
+//     }
+//     return result;
+// }
 
-fraction sub(fraction fraction1, fraction fraction2)
-{
-    fraction result{};
-    if (fraction1.denominator == fraction2.denominator)
-    {
-        result.numerator = fraction1.numerator - fraction2.numerator;
-        result.denominator = fraction1.denominator;
-    }
-    else
-    {
-        if (fraction1.numerator*fraction2.denominator>fraction2.numerator*fraction1.denominator)
-        {
-            result.numerator = fraction1.numerator*fraction2.denominator - fraction2.numerator*fraction1.denominator;
-        }
-        else
-        {
-            result.numerator = fraction2.numerator*fraction1.denominator - fraction1.numerator*fraction2.denominator;
-        }
-        result.denominator = fraction1.denominator+fraction2.denominator;
-    }
-    return result;
-}
+// fraction sub(fraction fraction1, fraction fraction2)
+// {
+//     fraction result{};
+//     if (fraction1.denominator == fraction2.denominator)
+//     {
+//         result.numerator = fraction1.numerator - fraction2.numerator;
+//         result.denominator = fraction1.denominator;
+//     }
+//     else
+//     {
+//         if (fraction1.numerator*fraction2.denominator>fraction2.numerator*fraction1.denominator)
+//         {
+//             result.numerator = fraction1.numerator*fraction2.denominator - fraction2.numerator*fraction1.denominator;
+//         }
+//         else
+//         {
+//             result.numerator = fraction2.numerator*fraction1.denominator - fraction1.numerator*fraction2.denominator;
+//         }
+//         result.denominator = fraction1.denominator+fraction2.denominator;
+//     }
+//     return result;
+// }
 
-fraction mul(fraction fraction1, fraction fraction2)
-{
-    fraction result{};
-    result.numerator = fraction1.numerator*fraction2.numerator;
-    result.denominator=fraction1.denominator*fraction2.denominator;
-    return result;
-}
+// fraction mul(fraction fraction1, fraction fraction2)
+// {
+//     fraction result{};
+//     result.numerator = fraction1.numerator*fraction2.numerator;
+//     result.denominator=fraction1.denominator*fraction2.denominator;
+//     return result;
+// }
 
-fraction div(fraction fraction1, fraction fraction2)
-{
-    fraction result{};
-    result.numerator = fraction1.numerator*fraction2.denominator;
-    result.denominator=fraction1.denominator*fraction2.numerator;
-    return result;
-}
+// fraction div(fraction fraction1, fraction fraction2)
+// {
+//     fraction result{};
+//     result.numerator = fraction1.numerator*fraction2.denominator;
+//     result.denominator=fraction1.denominator*fraction2.numerator;
+//     return result;
+// }
 
 void display(fraction f)
 {

@@ -1,12 +1,23 @@
 #include <vector>
 #include <algorithm>
 #include<iostream>
+#include <cstdlib>
+#include "ScopedTimer.hpp"
 
 bool is_sorted(std::vector<int> const& vec) { return std::is_sorted(vec.begin(), vec.end()); }
+
+std::vector<int> generate_random_vector(size_t const size, int const max = 100) {
+    std::vector<int> vec(size);
+    std::generate(vec.begin(), vec.end(), [&max]() { return std::rand() % max;} );
+    return vec;
+}
+
 
 //std::swap(a,b);
 
 void bubble_sort(std::vector<int> & vec){
+    {
+    ScopedTimer timer("bubble sort");
     while (is_sorted(vec)==false){
         int i{0};
         while(i<size(vec)){
@@ -15,6 +26,7 @@ void bubble_sort(std::vector<int> & vec){
             }
             i++;
         }
+    }
     }
     
 }
@@ -76,11 +88,29 @@ void merge_sort(std::vector<int> & vec, size_t const left, size_t const right){
 }
 
 void merge_sort(std::vector<int> & vec) {
-    merge_sort(vec, 0, vec.size() - 1);
+    {
+    ScopedTimer timer("merge sort");
+    merge_sort(vec, 0, vec.size() - 1);}
+}
+
+void search(std::vector<int> vec) {
+    if (is_sorted(vec)) {
+        
+    } else {
+        std::cout << "Le tableau doit être trié" << std::endl;
+    }  
 }
 
 int main(){
-    std::vector<int> array {6, 2, 7, 4, 9, 1, 3, 8, 5};
+    //std::vector<int> array {6, 2, 7, 4, 9, 1, 3, 8, 5};
+
+    std::vector<int> array {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    {
+    ScopedTimer timer("blibliotheque standard");
+    std::sort(array.begin(), array.end());
+    }
+    //Rapide par rapport aux fonctions de tri codées
+
     merge_sort(array);
     //bubble_sort(array);
     if (is_sorted(array)) {
