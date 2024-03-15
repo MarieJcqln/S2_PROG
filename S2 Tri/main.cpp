@@ -93,8 +93,30 @@ void merge_sort(std::vector<int> & vec) {
     merge_sort(vec, 0, vec.size() - 1);}
 }
 
-void search(std::vector<int> vec) {
+int search(std::vector<int> vec, int const val) {
+    int left {0};
+    int right {vec.size()};
+    int middle {(right+left)/2};
     if (is_sorted(vec)) {
+        //dichotomie
+        if (vec.size()>0){
+        if(vec[middle]<val){
+            //search(vec[middle:right],val);
+            std::vector<int> sub_vec{&vec[middle], &vec[right]};
+            search(sub_vec,val);
+        }
+        else if(vec[middle]>val){
+            //search(vec[middle:right],val);
+            std::vector<int> sub_vec{&vec[left], &vec[middle-1]};
+            search(sub_vec,val);
+        }
+        else if(vec[middle]==val){
+            return middle;
+        }
+        }
+        else {
+            return -1;
+        }
         
     } else {
         std::cout << "Le tableau doit être trié" << std::endl;
