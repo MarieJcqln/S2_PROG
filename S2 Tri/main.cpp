@@ -94,13 +94,12 @@ void merge_sort(std::vector<int> & vec) {
 }
 
 int search(std::vector<int> vec, int const val) { 
-    int left {0};
-    int size = static_cast<int>(vec.size());
-    int right {size};
-    int middle {(right+left)/2};
+    size_t left {0};
+    //int size = static_cast<int>(vec.size());
+    size_t right {vec.size()};
+    size_t middle {(right+left)/2};
     if (is_sorted(vec)) {
-        //dichotomie
-        if (vec.size()>0){
+        if (vec.size()>1){
         if(vec[middle]<val){
             //search(vec[middle:right],val);
             std::vector<int> sub_vec{&vec[middle], &vec[right]};
