@@ -4,6 +4,7 @@
 #include <sstream>
 #include <iterator>
 #include <cctype>
+#include <stack>
 
 std::vector<std::string> split_string(std::string const& s)
 {
@@ -31,17 +32,49 @@ bool is_floating(std::string const& s)
 }
 
 float npi_evaluate(std::vector<std::string> const& tokens){
-    
-    // Je récupère l'élément en haut de la pile
-    float rightOperand { stack.top() };
-    // Je l'enlève de la stack (la méthode top ne fait que lire l’élément en dessus de la pile)
-    stack.pop();
-    float leftOperand { stack.top() };
-    stack.pop();
-
-    // Il faut ensuite en fonction de l'opérateur calculer le résultat pour le remettre dans la pile
-    float result { /* TODO */};
-    stack.push(result);
+    //pile nombre
+    std::stack<int> stack;
+    int i{0};
+    int val {0};
+    while (i<tokens.size()){
+        if (is_floating(tokens[i])){
+            val = std::stof(tokens[i]);
+            stack.push(val);
+        }
+        else if (tokens[i]=="+"){
+            float rightOperand { stack.top() };
+            stack.pop();
+            float leftOperand { stack.top() };
+            stack.pop();
+            float result {leftOperand + rightOperand};
+            stack.push(result);
+        }
+        else if (tokens[i]=="-"){
+            float rightOperand { stack.top() };
+            stack.pop();
+            float leftOperand { stack.top() };
+            stack.pop();
+            float result {leftOperand - rightOperand};
+            stack.push(result);
+        }
+        else if (tokens[i]=="*"){
+            float rightOperand { stack.top() };
+            stack.pop();
+            float leftOperand { stack.top() };
+            stack.pop();
+            float result {leftOperand * rightOperand};
+            stack.push(result);
+        }
+        else if (tokens[i]=="/"){
+            float rightOperand { stack.top() };
+            stack.pop();
+            float leftOperand { stack.top() };
+            stack.pop();
+            float result {leftOperand / rightOperand};
+            stack.push(result);
+        }
+    }
+    return stack.top();
 }
 //std::stack
 
@@ -53,6 +86,7 @@ int main()
     std::getline(std::cin, entree);
     //std::cin>> entree;
     vec=split_string(entree); 
+    npi_evaluate(vec);
 
     return 0;
 }
