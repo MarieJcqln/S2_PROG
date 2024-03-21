@@ -118,7 +118,58 @@ std::vector<Token> tokenize(std::vector<std::string> const& words){
     return result;
 }
 
-float npi_evaluate(std::vector<Token> const& tokens);
+float npi_evaluate(std::vector<Token> const& tokens){
+    std::stack<float> stack;
+    int i{0};
+    float val {0};
+    while (i<tokens.size()){
+        if (tokens[i].type == TokenType::OPERAND){
+            val = tokens[i].value;
+            stack.push(val);
+            i++;
+        }
+        else if (tokens[i].op==Operator::ADD){
+            float rightOperand { stack.top()};
+            stack.pop();
+            float leftOperand { stack.top()};
+            stack.pop();
+            float result {leftOperand + rightOperand};
+            stack.push(result);
+            i++;
+        }
+        else if (tokens[i].op==Operator::SUB){
+            float rightOperand { stack.top() };
+            stack.pop();
+            float leftOperand { stack.top() };
+            stack.pop();
+            float result {leftOperand - rightOperand};
+            stack.push(result);
+            i++;
+        }
+        else if (tokens[i].op==Operator::MUL){
+            float rightOperand { stack.top() };
+            stack.pop();
+            float leftOperand { stack.top() };
+            stack.pop();
+            float result {leftOperand * rightOperand};
+            stack.push(result);
+            i++;
+        }
+        else if (tokens[i].op==Operator::DIV){
+            float rightOperand { stack.top() };
+            stack.pop();
+            float leftOperand { stack.top() };
+            stack.pop();
+            float result {leftOperand / rightOperand};
+            stack.push(result);
+            i++;
+        }
+    }
+    float result = stack.top();
+    std::cout<<result;
+    return result;
+
+}
 
 int main()
 {
