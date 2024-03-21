@@ -96,11 +96,29 @@ struct Token {
 };
 
 Token make_token(float value){
-
+    Token x {
+        TokenType::OPERAND
+    };
+    return x;
 }
 Token make_token(Operator op){
-
+    Token x {
+        TokenType::OPERATOR
+    };
+    return x;
 }
+
+std::vector<Token> tokenize(std::vector<std::string> const& words){
+    std::vector<Token> result;
+    int i{0};
+    while (i<words.size()){
+        result.push_back(make_token(std::stof(words[i])));
+        i++;   
+    }
+    return result;
+}
+
+float npi_evaluate(std::vector<Token> const& tokens);
 
 int main()
 {
