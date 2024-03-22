@@ -27,8 +27,7 @@ void bubble_sort(std::vector<int> & vec){
             i++;
         }
     }
-    }
-    
+    }   
 }
 
 //void selection_sort(std::vector<int> & vec);
@@ -37,25 +36,11 @@ void bubble_sort(std::vector<int> & vec){
 
 void merge_sort_merge(std::vector<int> & vec, size_t const left, size_t const middle, size_t const right){
     std::vector<int> vec2(vec.begin(), vec.end());
-    // size_t i{left};
-    // while (i<=middle){
-    //     if(vec2[i]>vec2[i+1]){
-    //         std::swap(vec2[i],vec2[i+1]);
-    //     }
-    //     i++;
-    // }
-    // size_t j{middle+1};
-    // while (j<=right){
-    //     if(vec2[j]>vec2[j+1]){
-    //         std::swap(vec2[j],vec2[j+1]);
-    //     }
-    //     j++;
-    // }
 
     int a{0};
     size_t x{left};
     size_t y{middle+1};
-    while (x<=middle-left && y<right-middle){
+    while (x<=middle && y<right){
         if(vec2[x]>vec2[y]){
             vec[left+a]=vec2[y];
             y++;
@@ -66,12 +51,12 @@ void merge_sort_merge(std::vector<int> & vec, size_t const left, size_t const mi
         }
         a++;
     }
-    while (x<middle-left){
+    while (x<middle){
         vec[left+a]=vec2[x];
         x++;
         a++;
     }
-    while(y<right-middle){
+    while(y<right){
         vec[left+a]=vec2[y];
         y++;
         a++;
@@ -80,10 +65,13 @@ void merge_sort_merge(std::vector<int> & vec, size_t const left, size_t const mi
 
 void merge_sort(std::vector<int> & vec, size_t const left, size_t const right){
     if (right > left){
-        size_t m{left+(right-left)/2};
+        size_t m{(left+right)/2};
         merge_sort(vec,left,m);
         merge_sort(vec,m+1,right);
         merge_sort_merge(vec, left, m, right);
+    }
+    else {
+        merge_sort_merge(vec, left, left, right);
     }
 }
 
@@ -124,7 +112,7 @@ int search(std::vector<int> vec, int const val) {
 }
 
 int main(){
-    //std::vector<int> array {6, 2, 7, 4, 9, 1, 3, 8, 5};
+    std::vector<int> array {6, 2, 7, 4, 9, 1, 3, 8, 5};
 
     // std::vector<int> array {1, 2, 3, 4, 5, 6, 7, 8, 9};
     // {
@@ -133,25 +121,25 @@ int main(){
     // }
     // //Rapide par rapport aux fonctions de tri codées
 
-    // merge_sort(array);
-    // //bubble_sort(array);
-    // if (is_sorted(array)) {
-    //     std::cout << "Le tableau est trié" << std::endl;
-    // } else {
-    //     std::cout << "Le tableau n'est pas trié" << std::endl;
-    // }
+    merge_sort(array);
+    //bubble_sort(array);
+    if (is_sorted(array)) {
+        std::cout << "Le tableau est trié" << std::endl;
+    } else {
+        std::cout << "Le tableau n'est pas trié" << std::endl;
+    }
     // return 0;
 
-    std::vector<int> vec1 {1, 2, 2, 3, 4, 8, 12};
-    search(vec1,8);
-    std::vector<int> vec2 {1, 2, 3, 3, 6, 14, 12, 15};
-    search(vec2,15);
-    std::vector<int> vec3 {2, 2, 3, 4, 5, 8, 12, 15, 16};
-    search(vec3,16);
-    std::vector<int> vec4 {5, 6, 7, 8, 9, 10, 11, 12, 13};
-    search(vec4,6);
-    std::vector<int> vec5 {1, 2, 3, 4, 5, 6, 7, 8, 9};
-    search(vec5,10);
+    // std::vector<int> vec1 {1, 2, 2, 3, 4, 8, 12};
+    // search(vec1,8);
+    // std::vector<int> vec2 {1, 2, 3, 3, 6, 14, 12, 15};
+    // search(vec2,15);
+    // std::vector<int> vec3 {2, 2, 3, 4, 5, 8, 12, 15, 16};
+    // search(vec3,16);
+    // std::vector<int> vec4 {5, 6, 7, 8, 9, 10, 11, 12, 13};
+    // search(vec4,6);
+    // std::vector<int> vec5 {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    // search(vec5,10);
 
     return 0;
 
