@@ -70,9 +70,9 @@ void merge_sort(std::vector<int> & vec, size_t const left, size_t const right){
         merge_sort(vec,m+1,right);
         merge_sort_merge(vec, left, m, right);
     }
-    else {
-        merge_sort_merge(vec, left, left, right);
-    }
+//     else {
+//         merge_sort_merge(vec, left, left, right);
+//     }
 }
 
 void merge_sort(std::vector<int> & vec) {
