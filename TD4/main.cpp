@@ -6,10 +6,22 @@
 #include <functional>
 #include <numeric>
 
+auto const is_space = [](char letter){ return letter == ' '; };
 
+int comptelettres(std::string & phrase){
+    int compteur{0};
+    auto it =std::find_if(phrase.begin(), phrase.end(), is_space);
+    compteur = std::distance(phrase.begin(),it);
+    std::cout<<compteur;
+    return compteur;
+}
+
+std::vector<std::string> split_string(std::string const& str);
 
 int main()
 {
+    //Exercice 1//
+
     std::vector<int> vec1 {};
     int saisie{0};
     for (int i=0; i<10;i++){
@@ -35,6 +47,11 @@ int main()
 
     int somme = std::accumulate(vec1.begin(), vec1.end(), 0);
     std::cout << "Somme des éléments : "<<somme << std::endl;
+
+    // Exercice 2//
+
+    std::string phrase {"Bonjour toi"};
+    comptelettres(phrase);
 
     return 0;
 }
