@@ -16,7 +16,18 @@ int comptelettres(std::string & phrase){
     return compteur;
 }
 
-std::vector<std::string> split_string(std::string const& str);
+std::vector<std::string> split_string(std::string const& str){
+    std::vector<std::string> vec {};
+    auto it{str.begin()};
+    auto previous{str.begin()};
+    while(it!=str.end()){    
+        it = std::find_if(it, str.end(), is_space);
+        std::string mot{previous,it};
+        vec.push_back(mot);
+        previous =it;
+    }
+    return vec;
+}
 
 int main()
 {
@@ -52,6 +63,7 @@ int main()
 
     std::string phrase {"Bonjour toi"};
     comptelettres(phrase);
+    split_string(phrase);
 
     return 0;
 }
