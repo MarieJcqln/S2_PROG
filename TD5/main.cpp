@@ -8,6 +8,52 @@
 #include <cstdlib>
 #include <map>
 
+    //Exercice 3//
+
+enum class CardKind {
+    Heart,
+    Diamond,
+    Club,
+    Spade,
+};
+
+enum class CardValue {
+    Two,
+    Three,
+    Four,
+    Five,
+    Six,
+    Seven,
+    Eight,
+    Nine,
+    Ten,
+    Jack,
+    Queen,
+    King,
+    Ace,
+};
+
+struct Card {
+    CardKind kind;
+    CardValue value;
+
+    int hash(){
+        
+    }
+};
+
+bool operator==(Card const& card1,  Card const& card2){
+    if (card1.kind==card2.kind && card1.value==card2.value){
+        return true;
+    }
+    else{return false;}
+}
+
+
+
+
+
+
     //Exercice 2//
 
 std::string random_name(size_t size) {
@@ -101,5 +147,8 @@ int main()
     for (auto it{map.begin()}; it != map.end(); it++){
     somme_reparations((*it).second);
     }
+
+
+        //Exercice 3//
     return 0;
 }
