@@ -43,13 +43,24 @@ std::unordered_map<std::string, std::vector<float>> robots_fixes_map(std::vector
         auto robotNumber = (*it).second;
         auto Number = tableau.find(robotName);
         if ( Number != tableau.end()) {
-            tableau[robotName].push_back(robotNumber);
+            //tableau[robotName].push_back(robotNumber);
+            (*Number).second.push_back(robotNumber);
         }
         else{
             tableau.insert({robotName, {robotNumber}});
         }
     }
     return tableau;
+}
+
+float somme_reparations(std::vector<float> cost){
+    int somme{0};
+    for (auto it{cost.begin()}; it != cost.end(); it++){
+        auto prix = (*it);
+        somme+=prix;
+    }
+    std::cout<<somme<<std::endl; //pour tester
+    return somme;
 }
 
     //Exercice 1//
@@ -86,5 +97,9 @@ size_t polynomial_rolling_hash(const std::string& s, size_t p, size_t m){
 int main()
 {
     //folding_string_hash("Marie", 128);
+    auto map = robots_fixes_map(get_robots_fix(10));
+    for (auto it{map.begin()}; it != map.end(); it++){
+    somme_reparations((*it).second);
+    }
     return 0;
 }
