@@ -29,6 +29,30 @@ std::vector<std::string> split_string(std::string const& str){
     return vec;
 }
 
+
+bool palindrome(std::string const& str){
+    auto deb{str.begin()};
+    auto fin{str.end()};
+    auto rdeb{str.rbegin()};
+    auto rfin{str.rend()};
+    bool pal{true};
+    while(deb!=str.end()){    
+        if (std::equal(deb,fin,rdeb)){
+            deb++;
+            rdeb++;
+        }
+        else{
+            pal=false;
+            break;
+        }
+    }
+    if(pal){
+        std::cout<<"C'est un palindrome.";
+    }
+    else{std::cout<<"Ce n'est pas un palindrome.";}
+    return pal;
+}
+
 int main()
 {
     //Exercice 1//
@@ -62,8 +86,13 @@ int main()
     // Exercice 2//
 
     std::string phrase {"Bonjour toi"};
-    comptelettres(phrase);
-    split_string(phrase);
+    // comptelettres(phrase);
+    // split_string(phrase);
+
+    // Exercice 3//
+    //std::string phrase2 {"kayak"};
+    std::string phrase2 {"marie"};
+    palindrome(phrase2);
 
     return 0;
 }
