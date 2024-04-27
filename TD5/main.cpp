@@ -199,6 +199,21 @@ int main()
 
 
         //Exercice 3//
-    get_cards(100);
+    auto cards = get_cards(100);
+
+    std::unordered_map<std::string, int> compteur {};
+
+    for (int i; i < cards.size(); i++){
+        auto carte = compteur.find(card_name(cards[i]));
+        if (carte != compteur.end()) {
+            *carte ++; 
+        }
+        else{
+            std::pair<std::string,int> insertion (card_name(cards[i]),1);
+            compteur.insert(insertion);
+        }
+
+    }
+
     return 0;
 }
