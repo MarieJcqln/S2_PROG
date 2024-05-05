@@ -64,7 +64,7 @@ void Node::delete_childs(){
         right->delete_childs();
     }
     left = nullptr;
-    right = nullptr;
+    right = nullptr;    //peut-être delete
 }
 
 void Node::display_infixe() const{
@@ -112,4 +112,45 @@ Node*& most_left(Node*& node){
     }
 }
 
-bool remove(Node*& node, int value);
+bool remove(Node*& node, int value){
+    if (value == node->value && node->is_leaf()) {
+        // On supprime le nœud courant
+        delete node;
+        // Comme on a une référence sur le pointeur du nœud courant, on le met à jour avec nullptr
+        // Ainsi le parent du nœud courant aura un pointeur vers nullptr
+        node = nullptr;
+        // on retourne true car la suppression a été effectuée
+        return true;
+    }
+
+    //Si le noeud a 1 seul fils
+
+    else if (value == node->left->value && node->right==NULL) {
+        // On supprime le nœud courant
+        delete node;
+        node = node->left;
+        node->left = nullptr;
+        return true;
+    }
+
+    else if (value == node->right->value && node->left==NULL) {
+        // On supprime le nœud courant
+        delete node;
+        node = node->right;
+        node->right = nullptr;
+        return true;
+    }
+
+    //Si le noeud a 2 fils
+
+}
+
+void delete_tree(Node* node){
+    if (node->left!= nullptr){
+        delete_tree(node->left);
+    }
+    if (node->right!= nullptr){
+        delete_tree(node->right);
+    }
+    delete node;
+}
