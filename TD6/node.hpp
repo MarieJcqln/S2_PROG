@@ -17,7 +17,7 @@ struct Node {
 
     std::vector<Node const*> prefixe() const;
 
-    std::vector<Node const*> Node::postfixe() const;
+    std::vector<Node const*> postfixe() const;
     
 };
 

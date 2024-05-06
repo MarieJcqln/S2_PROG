@@ -31,9 +31,21 @@ bool Node::is_leaf() const
 
 void Node::insert(int newvalue){
     if (newvalue<value){
-        left=create_node(newvalue);
+        if (left==nullptr){
+            left=create_node(newvalue);
+        }
+        else {
+            left->insert(newvalue);
+        }
     }
-    else{right=create_node(newvalue);}
+    else{
+        if (right==nullptr){
+            right=create_node(newvalue);
+        }
+        else {
+            right->insert(newvalue);
+        }
+    }
 }
 
 int Node::height() const{
@@ -142,6 +154,11 @@ bool remove(Node*& node, int value){
     }
 
     //Si le noeud a 2 fils
+
+    else{
+        node = most_left(node->right);
+        delete(node->right);
+    }
 
 }
 

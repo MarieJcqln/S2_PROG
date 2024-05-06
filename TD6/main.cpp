@@ -15,13 +15,14 @@ int main(){
     arbre->insert(0);
 
     arbre->display_infixe();
+    pretty_print_left_right(*arbre);
 
     std::vector<Node const*> vect = arbre->postfixe();
     int somme{0};
     for (int i; i<vect.size();i++){
         somme = somme + vect[i]->value;
     }
-    std::cout<<somme<<std::endl;
+    std::cout<<"La somme est "<<somme<<std::endl;
 
     arbre->height();
 
