@@ -101,24 +101,24 @@ std::vector<Node const*> Node::prefixe() const{
     return nodes;
 }
 
-std::vector<Node const*> Node::postfixe() const{
-    std::vector<Node const*> nodes {};
-    if (!right && !left){ //is_leaf
-        nodes.push_back(this);
-        return nodes;
+std::vector<Node const*> Node::postfixe() const {
+    std::vector<Node const*> nodes;
+
+    if (left) {
+        std::vector<Node const*> left_nodes = left->postfixe();
+        nodes.insert(nodes.end(), left_nodes.begin(), left_nodes.end());
     }
-    else if (right && left){
-        left->postfixe();
-        right->postfixe();
+
+    if (right) {
+        std::vector<Node const*> right_nodes = right->postfixe();
+        nodes.insert(nodes.end(), right_nodes.begin(), right_nodes.end());
     }
-    else if (!right){
-        left->postfixe();
-    }
-    else if (!left){
-        right->postfixe();
-    }
-    
+
+    nodes.push_back(this);
+
+    return nodes;
 }
+
 
 Node*& most_left(Node*& node){
     if (node->left!= nullptr){
