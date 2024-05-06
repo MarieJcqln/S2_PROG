@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include "node.hpp"
 
 void pretty_print_left_right(Node const& node, std::string const& prefix, bool is_left) {
@@ -49,23 +50,20 @@ void Node::insert(int newvalue){
 }
 
 int Node::height() const{
-    int hauteur{0};
     int hauteurleft{0};
     int hauteurright{0};
-    if (left != nullptr){
-        left->height();
-        hauteurleft++;
+    if(left == nullptr && right == nullptr){
+        return 1;
     }
-    if (right != nullptr){
-        right->height();
-        hauteurright++;
+    else if(right && !left){
+        hauteurright = right->height();
+        return hauteurright+1;
     }
-    if (hauteurleft>hauteurright){
-        return hauteurleft;
+    else if(left && !right){
+        hauteurleft= left->height();
+        return hauteurleft+1;
     }
-    if (hauteurleft<=hauteurright){
-        return hauteurright;
-    }
+    return 1 + fmax(left->height(),right->height());
 }
 
 void Node::delete_childs(){
@@ -105,14 +103,21 @@ std::vector<Node const*> Node::prefixe() const{
 
 std::vector<Node const*> Node::postfixe() const{
     std::vector<Node const*> nodes {};
-    if (left!= nullptr){
-        left->postfixe();
+    if (!right && !left){ //is_leaf
+        nodes.push_back(this);
+        return nodes;
     }
-    nodes.push_back(this);
-    if (right!= nullptr){
+    else if (right && left){
+        left->postfixe();
         right->postfixe();
     }
-    return nodes;
+    else if (!right){
+        left->postfixe();
+    }
+    else if (!left){
+        right->postfixe();
+    }
+    
 }
 
 Node*& most_left(Node*& node){

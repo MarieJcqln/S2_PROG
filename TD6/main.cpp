@@ -18,13 +18,14 @@ int main(){
     pretty_print_left_right(*arbre);
 
     std::vector<Node const*> vect = arbre->postfixe();
+    
     int somme{0};
-    for (int i; i<vect.size();i++){
+    for (int i{0}; i<vect.size();i++){
         somme = somme + vect[i]->value;
     }
     std::cout<<"La somme est "<<somme<<std::endl;
 
-    arbre->height();
+    std::cout<<"La hauteur est "<<arbre->height()<<std::endl;
 
 
     return 0;
