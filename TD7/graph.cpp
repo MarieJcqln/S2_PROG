@@ -16,12 +16,52 @@ void WeightedGraph::add_vertex(int const id){
     }
 }
 
-void WeightedGraph::add_directed_edge(int const from, int const to, float const weight = 1.0f){
+void WeightedGraph::add_directed_edge(int const from, int const to, float const weight){
     //ajout arête et vertex s'il existe pas
     auto A = adjacency_list.find(from);
     auto B = adjacency_list.find(to);
     if ( A == adjacency_list.end()) { add_vertex(from);}
     if ( B == adjacency_list.end()) { add_vertex(to);}
-    adjacency_list[2][to].weight = weight;
+    Graph::WeightedGraphEdge edge {to,weight};
+    adjacency_list[from].push_back(edge);
+}
+
+void WeightedGraph::add_undirected_edge(int const from, int const to, float const weight){
+    add_directed_edge(from, to, weight);
+    add_directed_edge(to,from,weight);
+}
+
+WeightedGraph Graph::build_from_adjacency_matrix(std::vector<std::vector<float>> const& adjacency_matrix){
+    WeightedGraph graphe {};
+    int i{0};
+    while(i<adjacency_matrix.size()){
+        int a{0};
+        while (a<adjacency_matrix[i].size()){
+            if (adjacency_matrix[i][a]!= 0){
+                graphe.add_directed_edge(i,a,adjacency_matrix[i][a]);
+            }
+            a++;
+        }
+        i++;
+    }
+    return graphe;
+}
+
+void WeightedGraph::print_DFS(int const start) const{
+    //std::stack<int> stack;
+    auto debut = adjacency_list.find(start);
+    //recursif
+    std::cout<<start<<std::endl;
+
+    int i{0};
+    while(i<adjacency_matrix[debut].size()){ //pas bon
+        int a{0};
+        while (a<adjacency_matrix[i].size()){
+            a++;
+        }
+        i++;
+    }
 
 }
+
+void WeightedGraph::print_BFS(int const start) const{}
