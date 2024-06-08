@@ -47,21 +47,15 @@ WeightedGraph Graph::build_from_adjacency_matrix(std::vector<std::vector<float>>
     return graphe;
 }
 
-void WeightedGraph::print_DFS(int const start) const{
-    //std::stack<int> stack;
-    auto debut = adjacency_list.find(start);
-    //recursif
-    std::cout<<start<<std::endl;
-
-    int i{0};
-    while(i<adjacency_matrix[debut].size()){ //pas bon
-        int a{0};
-        while (a<adjacency_matrix[i].size()){
-            a++;
-        }
-        i++;
+// premier élément -> si enfants , imprimer, passe à ses enfants
+void WeightedGraph::print_DFS(int const start) const {
+    if (adjacency_list.find(start) != adjacency_list.end()) {
+        std::cout<<start<<std::endl;
     }
-
+    for (const auto& edge : adjacency_list.at(start)) {
+        print_DFS(edge.to);
+    }
 }
+
 
 void WeightedGraph::print_BFS(int const start) const{}

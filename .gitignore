@@ -1,2 +1,19 @@
 build/
 bin/
+.DS_Store
+
+S2 Tri/.vscode/
+
+td1/.vscode/
+
+TD3/.vscode/
+
+TD4/.vscode/settings.json
+
+TD5/.vscode/settings.json
+
+*.json
+
+TD7/CMakeLists.txt
+
+TD6/CMakeLists.txt
