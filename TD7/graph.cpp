@@ -2,6 +2,7 @@
 #include <vector>
 #include <unordered_map>
 #include <utility>
+#include <queue>
 #include "graph.hpp"
 
 using namespace Graph;
@@ -51,11 +52,23 @@ WeightedGraph Graph::build_from_adjacency_matrix(std::vector<std::vector<float>>
 void WeightedGraph::print_DFS(int const start) const {
     if (adjacency_list.find(start) != adjacency_list.end()) {
         std::cout<<start<<std::endl;
-    }
-    for (const auto& edge : adjacency_list.at(start)) {
-        print_DFS(edge.to);
+        for (const auto& edge : adjacency_list.at(start)) {
+            print_DFS(edge.to);
+        }
     }
 }
 
-
-void WeightedGraph::print_BFS(int const start) const{}
+void WeightedGraph::print_BFS(int const start) const{
+    std::queue<int> file;
+    // ajouter start à la file  
+    file.push(start);
+    //file pas vide donc pop premier élément 
+    while (!file.empty()){
+        std::cout<<file.front()<<' ';
+        file.pop();
+        //ajout éléments adjacents
+        for (const auto& edge : adjacency_list.at(start)) {
+            file.push(edge.to);
+        }
+    }  
+}
