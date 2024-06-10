@@ -3,6 +3,8 @@
 #include <unordered_map>
 #include <utility>
 #include <queue>
+#include <functional>
+#include <string_view>
 #include "graph.hpp"
 
 using namespace Graph;
@@ -72,3 +74,19 @@ void WeightedGraph::print_BFS(int const start) const{
         }
     }  
 }
+
+std::unordered_map<int, std::vector<int>> dijkstra(std::unordered_map<int, std::vector<WeightedGraphEdge>> adjacency_list, int depart, int arrive){
+    //tableau associatif pour associer à chaque sommet visité la distance la plus courte connue pour aller du sommet de départ à ce sommet et d'où on vient pour atteindre cette distance
+    std::unordered_map<int, std::vector<int>> chemin{};
+    std::priority_queue<std::vector<int>> file_a_visiter{}; // pour itérer sur les sommets à visiter en choisissant à chaque fois le sommet le plus proche du sommet de départ
+    //initialisation 
+    file_a_visiter.push({depart,0});
+    while (!file_a_visiter.empty()){
+        //itération
+    }
+
+
+
+    return chemin;
+}
+
