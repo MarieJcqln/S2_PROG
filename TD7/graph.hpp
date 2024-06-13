@@ -35,5 +35,5 @@ namespace Graph {
 
     WeightedGraph build_from_adjacency_matrix(std::vector<std::vector<float>> const& adjacency_matrix);
 
-    std::unordered_map<int, std::vector<int>> dijkstra(std::unordered_map<int, std::vector<WeightedGraphEdge>> adjacency_list, int depart, int arrive);
+    std::unordered_map<int, std::pair<int,float>> dijkstra(std::unordered_map<int, std::vector<WeightedGraphEdge>> adjacency_list, int depart, int arrive);
 } // namespace
